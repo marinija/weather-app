@@ -1,0 +1,17 @@
+<div class="jumbotron">
+    <h1 class="display-6">Search weather by city name:</h1>
+    <input type="text" class="form-control" [formControl]="cityToSearch" (keydown.enter)="searchTown()">
+</div>
+
+<div class="alert alert-primary" role="alert" *ngIf="city">
+    Country: {{city.country}} City: {{city.name}}
+</div>
+<ul class="list-group">
+    <li *ngFor="let forecast of forecastData" class="d-flex align-items-center list-group-item">
+        Current Temp: {{ forecast.temp | number: '1.0-0'}} °C
+        Min Temp: {{forecast.temp_min | number: '1.0-0'}} °C
+        Max Temp: {{forecast.temp_max | number: '1.0-0'}} °C
+        {{ forecast.dateString | date: 'E'}}
+        <img [src]="imgUrl+forecast.icon+'.png'" alt="">
+    </li>
+</ul>
